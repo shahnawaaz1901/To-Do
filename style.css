@@ -2,7 +2,7 @@
   background-color: rgb(212, 214, 221);
   width: 70%;
   margin: auto;
-  text-align: center;
+  /* text-align: center; */
   padding: 20px;
 }
 
@@ -18,7 +18,7 @@
 .input {
   /* border: 1px solid black; */
   padding: 10px;
-  width: 70%;
+  width: 90%;
   margin: auto;
   background-color: rgb(222, 217, 220);
   border-radius: 8px;
@@ -29,12 +29,11 @@
 
 #input-todo {
   font-size: 16px;
+  width: 90%;
   padding: 5px;
-  width: 80%;
   background-color: transparent;
   border: none;
   margin: 0px 4px 0px 4px;
-  /* border: 1px solid black; */
 }
 
 #input-todo:focus {
@@ -46,14 +45,39 @@
   /* border: 1px solid black; */
 }
 
+#plus {
+  cursor: pointer;
+}
+
 .input span i {
   font-size: 20px;
 }
 
 .operations {
+  color: grey;
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  width: 70%;
+  width: 90%;
   margin: auto;
+  border-bottom: 1px solid grey;
+}
+
+.todos {
+  width: 90%;
+  margin: auto;
+  border: 1px solid grey;
+  padding: 10px;
+}
+
+.todo {
+  text-align: justify;
+  display: flex;
+  justify-content: space-between;
+}
+
+.todo-task {
+  padding: 0px 10px;
+  text-align: justify;
+  width: 90%;
 }
