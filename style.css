@@ -78,6 +78,7 @@
 
 .delete-btn {
   display: none;
+  cursor: pointer;
 }
 
 .todo:hover .delete-btn {
