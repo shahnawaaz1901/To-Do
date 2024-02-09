@@ -83,15 +83,18 @@
   margin-bottom: 10px;
 }
 
-.delete-btn {
+.operation-btn {
   display: none;
   cursor: pointer;
 }
 
-.todo:hover .delete-btn {
-  display: flex;
+.todo:hover .operation-btn {
+  display: block;
 }
 
+.update-btn {
+  margin-top: 10px;
+}
 .todo-task {
   padding: 0px 10px;
   text-align: justify;

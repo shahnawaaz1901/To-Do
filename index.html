@@ -29,7 +29,7 @@
         <div class="todos">
           <div class="todo">
             <div class="select-btn">
-              <input type="radio" />
+              <input type="radio" xlass="task-done" />
             </div>
             <div class="todo-task">
               Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -43,8 +43,16 @@
               publishing software like Aldus PageMaker including versions of
               Lorem Ipsum.
             </div>
-            <div class="delete-btn" onclick="deleteTodo(2)">
-              <i class="fa-solid fa-delete-left"></i>
+            <div class="operation-btn">
+              <div class="delete-btn" onclick="deleteTodo(2)">
+                <i class="fa-solid fa-delete-left"></i>
+              </div>
+              <div
+                class="update-btn"
+                onclick="prompt('Please Enter Value','Nothing')"
+              >
+                <i class="fa-regular fa-pen-to-square"></i>
+              </div>
             </div>
           </div>
           <div class="todo">
@@ -63,8 +71,13 @@
               publishing software like Aldus PageMaker including versions of
               Lorem Ipsum.
             </div>
-            <div class="delete-btn" onclick="deleteTodo(2)">
-              <i class="fa-solid fa-delete-left"></i>
+            <div class="operation-btn">
+              <div class="delete-btn" onclick="deleteTodo(2)">
+                <i class="fa-solid fa-delete-left"></i>
+              </div>
+              <div class="update-btn" onclick="updateTodo(Nothing)">
+                <i class="fa-regular fa-pen-to-square"></i>
+              </div>
             </div>
           </div>
         </div>
