@@ -6,22 +6,22 @@ const completedAllTaskButton = document.querySelector("#complete-all");
 const removeCompleteTaskButton = document.querySelector("#remove-completed");
 let numTodo = document.getElementById("task-count");
 let currentChoice = choices[0];
-
-const todos = [
+let radioBtns;
+let todos = [
   {
-    completed: true,
+    completed: false,
     text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
   },
   {
-    completed: true,
+    completed: false,
     text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
   },
   {
-    completed: true,
+    completed: false,
     text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
   },
   {
-    completed: true,
+    completed: false,
     text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
   },
 ];
@@ -30,7 +30,20 @@ const todoCount = todos.length;
 for (let choice of choices) {
   choice.addEventListener("click", function (e) {
     makeSelectElementBold(this);
+    renderTodoByChoice(this.getAttribute("id"));
   });
+}
+
+function renderTodoByChoice(id) {
+  if (id == 0) {
+    renderToDoList();
+  } else if (id == 1) {
+    let todo = todos.filter((v) => v.completed == false);
+    renderToDoList(todo);
+  } else {
+    let todo = todos.filter((v) => v.completed == true);
+    renderToDoList(todo);
+  }
 }
 
 function makeSelectElementBold(element) {
@@ -43,7 +56,9 @@ function renderTodo(todo, index) {
   const newElement = document.createElement("div");
   newElement.classList.add("todo");
   newElement.innerHTML = `<div class="select-btn">
-  <input type="radio" ${todo.completed ? "checked" : ""}/>
+  <input type="radio" id=${index} class="radio-btn" ${
+    todo.completed ? "checked" : ""
+  }/>
 </div>
 <div class="todo-task">
   ${todo.text}
@@ -80,21 +95,24 @@ function deleteTodo(index) {
   }
 }
 
-addBtn.addEventListener("click", (e) => {
+addBtn.addEventListener("click", () => {
   if (inputBox.value) {
     addTodo({ completed: false, text: inputBox.value });
     inputBox.value = "";
   }
 });
 
-function renderToDoList() {
+function renderToDoList(todo) {
+  let todoList = todo || todos;
   todoContainer.innerHTML = "";
   let index = 0;
-  for (let everyTodo of todos) {
+  for (let everyTodo of todoList) {
     renderTodo(everyTodo, index);
     index++;
   }
-  numTodo.textContent = todos.length;
+  numTodo.textContent = todoList.length;
+  radioBtns = document.querySelectorAll(".select-btn > input");
+  addEventListenerToRadio();
 }
 
 inputBox.addEventListener("keyup", (e) => {
@@ -107,14 +125,30 @@ inputBox.addEventListener("keyup", (e) => {
 });
 
 completedAllTaskButton.addEventListener("click", (e) => {
+  todos = todos.filter((v) => (v.completed = true));
+  renderToDoList();
   console.log("Completed is Clicked");
 });
 
 removeCompleteTaskButton.addEventListener("click", (e) => {
+  todos = todos.filter((v) => v.completed != true);
   console.log("Remove Button is Clicked");
+  renderToDoList();
+  makeSelectElementBold(choices[0]);
 });
 
 document.addEventListener("DOMContentLoaded", (e) => {
   makeSelectElementBold(choices[0]);
   renderToDoList();
 });
+
+function addEventListenerToRadio() {
+  for (let every of radioBtns) {
+    every.addEventListener("click", function (e) {
+      console.log("click");
+      const id = e.target.getAttribute("id");
+      todos[id].completed = !todos[id].completed;
+      renderToDoList();
+    });
+  }
+}
