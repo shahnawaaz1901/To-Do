@@ -52,14 +52,19 @@
 
 #plus {
   cursor: pointer;
+  transition: all 0.1s ease-in;
 }
 
+#plus:hover {
+  scale: 1.2;
+}
 .input span i {
   font-size: 20px;
 }
 
 .operations {
-  color: grey;
+  color: white;
+  /* grey; */
   display: flex;
   justify-content: space-between;
   padding: 10px;
@@ -72,6 +77,10 @@
   cursor: pointer;
 }
 
+.operations > div:hover {
+  color: rgba(2, 0, 36, 1);
+  /* orange; */
+}
 .todos {
   width: 90%;
   margin: auto;
@@ -100,10 +109,10 @@
   text-align: justify;
   display: flex;
   /* justify-content: space-between; */
-  border-bottom: 1px solid grey;
+  /* border-bottom: 1px solid grey; */
   padding-bottom: 10px;
-  margin-bottom: 10px;
-  min-height: 50px;
+  /* margin-bottom: 10px; */
+  min-height: 60px;
 }
 
 .todo > div {
@@ -162,13 +171,16 @@
   margin-top: 10px;
   display: flex;
   justify-content: space-between;
-  color: grey;
+  color: white;
 }
 
 .choices span {
   cursor: pointer;
 }
 
+.choices span:hover {
+  color: rgba(2, 0, 36, 1);
+}
 .bold {
   font-weight: bold;
   color: black;
