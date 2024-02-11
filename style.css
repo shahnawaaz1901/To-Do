@@ -106,6 +106,7 @@
 }
 
 .todo {
+  color: #cbf5ff;
   text-align: justify;
   display: flex;
   /* justify-content: space-between; */
